@@ -2,34 +2,45 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  let(:base_title) { "RateMyCourse" }
+  subject { page }
+
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1', text: heading) }
+    it { should have_title full_title(page_title) }
+  end
 
   describe "Home page" do
     before { visit root_path }
 
-    it { should have_content ('RateMyCourse') }
-    it { should have_title full_title('') }
+    let(:heading) { 'RateMyCourse' }
+    let(:page_title) { '' }
+
+    it should_behave_like "all static pages"
     it { should_not have_title ('YOLO') }
   end
 
   describe "Help page" do
     before { visit help_path }
+    let(:heading) { 'Help' }
+    let(:page_title) { 'Help' }
 
-    it { should have_content ('Help') }
-    it { should have_title full_title('') }
+    it should_behave_like "all static pages"
   end
 
   describe "About page" do
     before { visit about_path }
+    let(:heading) { 'About' }
+    let(:page_title) { 'About' }
 
-    it { should have_content ('About') }
-    it { should have_title full_title('') }
+    it should_behave_like "all static pages"
   end
 
   describe "Contact page" do
     before { visit contact_path }
 
-    it { should have_content ('Contact') }
-    it { should have_title full_title('') }
+    let(:heading) { 'Contact' }
+    let(:page_title) { 'Contact' }
+
+    it should_behave_like "all static pages"
   end
 end
