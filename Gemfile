@@ -12,6 +12,10 @@ gem 'coffee-rails', '~> 4.0.0'
 
 #Bootstrap
 gem 'bootstrap-sass'
+gem 'simple_form'
+
+#Test coverage
+gem 'simplecov'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
