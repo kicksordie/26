@@ -7,4 +7,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to @user
+      flash[:success] = "Welcome to RateMyCourse!"
+    end
+  else
+    render 'new'
+  end
+
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
+
 end

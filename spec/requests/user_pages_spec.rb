@@ -28,8 +28,15 @@ describe "User pages" do
     describe "with invaild info" do
       it "should not create an account" do
         expect { click_button submit }.not_to change(User, :count)
-
       end
+
+      describe "after form submission" do
+        before { click_button submit }
+
+        it { should have_title('Sign Up') }
+        it { should have_content('Error') }
+      end
+
     end
 
     describe "with vaild information" do
